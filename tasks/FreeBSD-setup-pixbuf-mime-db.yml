@@ -1,0 +1,40 @@
+---
+- name: check status of lightdm service
+  tags: displayenv
+  changed_when: false
+  failed_when: setup_i3_svc_chk['rc'] > 1
+  register: setup_i3_svc_chk
+  ansible.builtin.command:
+    cmd: service lightdm status
+
+- name: "ensure the {{ setup_i3_pixbuf_update_path }} command exists"
+  tags: displayenv
+  register: setup_i3_pixbuf_stat
+  ansible.builtin.stat:
+    path: "{{ setup_i3_pixbuf_update_path }}"
+    get_attributes: true
+
+- name: update the pixbuf loader cache
+  tags: displayenv
+  when: 
+    - setup_i3_pixbuf_stat['stat']['exists'] == true
+    - "'lightdm is running' not in setup_i3_svc_chk['stdout']"
+  notify: FreeBSD restart service
+  ansible.builtin.command:
+    cmd: "{{ setup_i3_pixbuf_update_path }} --update-cache"
+
+- name: "ensure the {{ setup_i3_mime_db_path }} command exists"
+  tags: displayenv
+  register: setup_i3_mime_db_stat
+  ansible.builtin.stat:
+    path: "{{ setup_i3_mime_db_path }}"
+    get_attributes: true
+
+- name: "ensure the mime database  exists"
+  tags: displayenv
+  when: 
+    - setup_i3_pixbuf_stat['stat']['exists'] == true
+    - "'lightdm is running' not in setup_i3_svc_chk['stdout']"
+  notify: FreeBSD restart service
+  ansible.builtin.command:
+    cmd: "{{ setup_i3_mime_db_path }} {{ setup_i3_mime_data_path }}"

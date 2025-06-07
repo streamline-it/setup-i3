@@ -1,0 +1,17 @@
+---
+- name: ensure needed variables are defined
+  tags: displayenv
+  ansible.builtin.assert:
+    that: 
+      - setup_i3_gui_users is defined
+      - setup_i3_pkgs is defined
+      - setup_i3_svcs is defined
+      - setup_i3_sysrc_directives is defined
+      - setup_i3_pixbuf_update_path is defined
+      - setup_i3_mime_db_path is defined
+      - setup_i3_mime_data_path is defined
+    fail_msg: >
+      "Make sure the following variables are defined ( setup_i3_gui_users,
+      setup_i3_pkgs, setup_i3_svcs, setup_i3_sysrc_directives 
+      setup_i3_pixbuf_update_path, setup_i3_mime_db_path 
+      setup_i3_mime_data_path"

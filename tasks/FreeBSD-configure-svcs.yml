@@ -1,0 +1,8 @@
+---
+- name: ensure services are started
+  tags: displayenv
+  loop:
+    "{{ setup_i3_svcs }}"
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started

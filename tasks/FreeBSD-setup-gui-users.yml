@@ -1,0 +1,21 @@
+---
+- name: check to see if the gecos name exists for each gui user
+  tags: displayenv
+  register: setup_i3_gecos_check
+  changed_when: false
+  loop:
+    "{{ setup_i3_gui_users }}"
+  ansible.builtin.shell:
+    cmd: "getent passwd {{ item['username'] }} | awk -F ':' '{ print $5 }'"
+
+- name: ensure gui users have gecos names entered
+  tags: displayenv
+  notify: FreeBSD restart service
+  loop:
+    "{{ setup_i3_gui_users }}"
+  loop_control:
+    index_var: setup_i3_loop_index
+  when: >
+    item['gecos'] != setup_i3_gecos_check['results'][setup_i3_loop_index]['stdout']
+  ansible.builtin.command:
+    cmd: "pw usermod -c {{ item['gecos'] }} -n {{ item['username'] }}"

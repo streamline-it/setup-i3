@@ -1,0 +1,8 @@
+---
+# defaults file for setup-i3
+
+# user list whose purpose is to make sure the gecos field is update so
+# the name properly appears under lightdm's user dropdown
+setup_i3_gui_users:
+  - username:
+    gecos:

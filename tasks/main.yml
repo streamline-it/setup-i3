@@ -1,0 +1,32 @@
+---
+# tasks file for setup-i3
+- name: import OS specific variables
+  tags: displayenv
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+- name: import tasks to check asserts
+  tags: displayenv
+  ansible.builtin.include_tasks: asserts.yml
+
+- name: import tasks to install packages
+  tags: displayenv
+  ansible.builtin.include_tasks: FreeBSD-install-pkgs.yml
+
+- name: import tasks to configure rc.conf
+  tags: displayenv
+  ansible.builtin.include_tasks: FreeBSD-configure-rc-conf.yml
+
+- name: call task to ensure pixbuf cache and mime database is updated
+  tags: displayenv
+  ansible.builtin.include_tasks: FreeBSD-setup-pixbuf-mime-db.yml
+
+- name: call task to make sure gui users have gecos names setup
+  tags: displayenv
+  ansible.builtin.include_tasks: FreeBSD-setup-gui-users.yml
+
+- name: import tasks to configure service(s)
+  tags: displayenv
+  ansible.builtin.include_tasks: FreeBSD-configure-svcs.yml
+
+- name: import tasks to setup i3 config file
+  ansible.builtin.include_tasks: FreeBSD-setup-user-i3-config.yml

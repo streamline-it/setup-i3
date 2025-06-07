@@ -1,0 +1,9 @@
+---
+- name: enable needed services
+  tags: displayenv
+  notify: FreeBSD restart service
+  loop:
+    "{{ setup_i3_sysrc_directives }}"
+  community.general.sysrc:
+    name: "{{ item['name'] }}"
+    value: "{{item['value'] }}"

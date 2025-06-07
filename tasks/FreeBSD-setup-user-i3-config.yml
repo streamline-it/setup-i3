@@ -1,0 +1,29 @@
+---
+- name: check to see if i3 config directory exists
+  tags: displayenv
+  register: setup_i3_config_check
+  loop:
+    "{{ setup_i3_gui_users }}"
+  ansible.builtin.stat:
+    path: "/home/{{ item['username'] }}/{{ setup_i3_user_config_path }}"
+    get_attributes: true
+
+- name: modify the i3 config file if it exists
+  tags: displayenv
+  loop:
+    "{{ setup_i3_gui_users }}"
+  loop_control:
+    index_var: setup_i3_loop_index
+  when: 
+    - item['username'] is in setup_i3_config_check['results'][setup_i3_loop_index]['stat']['path']
+    - setup_i3_config_check['results'][setup_i3_loop_index]['stat']['exists'] == true
+  ansible.builtin.blockinfile:
+    path: "/home/{{ item['username'] }}/{{ setup_i3_user_config_path }}"
+    block: |
+      # RO Mods
+      assign [class="terminal"] 2
+      bindsym $mod+n workspace 4; exec "thunar"
+      bindsym $mod+t workspace 4; exec "mousepad"
+      bindsym $mod+b workspace 3; exec "firefox"
+      # End of RO mods
+    state: present
