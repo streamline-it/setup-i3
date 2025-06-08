@@ -25,6 +25,6 @@
       bindsym $mod+n workspace 4; exec "thunar"
       bindsym $mod+t workspace 4; exec "mousepad"
       bindsym $mod+b workspace 3; exec "firefox"
-      bindsym $mod+l workspace 5; exec "libreoffice"
+      bindsym $mod+o workspace 5; exec "libreoffice"
       # End of RO mods
     state: present
