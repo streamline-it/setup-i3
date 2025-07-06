@@ -28,3 +28,17 @@
       bindsym $mod+o workspace 5; exec "libreoffice"
       # End of RO mods
     state: present
+
+- name: ensure the user super key is set appropriately for that user
+  tags: displayenv
+  loop:
+    "{{ setup_i3_gui_users }}"
+  loop_control:
+    index_var: setup_i3_loop_index
+  when: 
+    - setup_i3_config_check['results'][setup_i3_loop_index]['stat']['exists'] == true
+    - item['username'] is in setup_i3_config_check['results'][setup_i3_loop_index]['stat']['path']
+  ansible_builtin.lineinfile:
+    path: "/home/{{ item['username'] }}/{{ setup_i3_user_config_path }}"
+    regex: "set $mod Mod"
+    line: "set $mod {{ item['super_key'] }}"
