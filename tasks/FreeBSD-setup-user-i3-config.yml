@@ -38,7 +38,7 @@
   when: 
     - setup_i3_config_check['results'][setup_i3_loop_index]['stat']['exists'] == true
     - item['username'] is in setup_i3_config_check['results'][setup_i3_loop_index]['stat']['path']
-  ansible_builtin.lineinfile:
+  ansible.builtin.lineinfile:
     path: "/home/{{ item['username'] }}/{{ setup_i3_user_config_path }}"
-    regex: "set $mod Mod"
+    regex: "set $mod Mod1"
     line: "set $mod {{ item['super_key'] }}"
