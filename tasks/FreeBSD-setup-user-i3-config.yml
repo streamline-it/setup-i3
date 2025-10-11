@@ -14,6 +14,7 @@
     "{{ setup_i3_gui_users }}"
   loop_control:
     index_var: setup_i3_loop_index
+  debugger: on_failed
   when: 
     - setup_i3_config_check['results'][setup_i3_loop_index]['stat']['exists'] == true
     - item['username'] is in setup_i3_config_check['results'][setup_i3_loop_index]['stat']['path']
@@ -26,7 +27,7 @@
       bindsym $mod+t workspace 4; exec "mousepad"
       bindsym $mod+b workspace 3; exec "firefox"
       bindsym $mod+o workspace 5; exec "libreoffice"
-      exec --no-startup-id xwallpaper --zoom /usr/local/share/wallpaper/{{ item['wallpaper'] }}
+      exec --no-startup-id xwallpaper --zoom {{ setup_i3_wallpaper_directory }}/{{ item['wallpaper'] }}
       # End of RO mods
     state: present
 
