@@ -6,6 +6,15 @@ setup_i3_pkgs:
   - i3
   - i3status
   - dmenu
+  - xwallpaper
+
+setup_i3_wallpaper_directory: /usr/local/share/backgrounds
+
+setup_i3_wallpaper_files:
+  - 7drops.jpg
+  - FreeBSD_Delight.jpg
+  - hot_enuf.jpg
+  - metal.jpg
 
 setup_i3_svcs:
   - lightdm

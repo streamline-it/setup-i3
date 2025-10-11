@@ -28,5 +28,8 @@
   tags: displayenv
   ansible.builtin.include_tasks: FreeBSD-configure-svcs.yml
 
+- name: import tasks to add wallpaper files to host
+  ansible.builtin.iclude_tasks: FreeBSD-import-wallpaper-files.yml
+
 - name: import tasks to setup i3 config file
   ansible.builtin.include_tasks: FreeBSD-setup-user-i3-config.yml

@@ -1,0 +1,8 @@
+---
+- 
+- name: ensure wallpaper files exist
+  loop:
+    "{{ setup_i3_wallpaper_files }}"
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ setup_i3_wallpaper_directory }}"
