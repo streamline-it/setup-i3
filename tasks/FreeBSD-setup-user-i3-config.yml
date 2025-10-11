@@ -26,7 +26,7 @@
       bindsym $mod+t workspace 4; exec "mousepad"
       bindsym $mod+b workspace 3; exec "firefox"
       bindsym $mod+o workspace 5; exec "libreoffice"
-      exec --no-startup-id xwallpaper --zoom /usr/local/share/wallpaper/
+      exec --no-startup-id xwallpaper --zoom /usr/local/share/wallpaper/{{ item['wallpaper'] }}
       # End of RO mods
     state: present
 

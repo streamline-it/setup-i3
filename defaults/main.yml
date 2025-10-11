@@ -7,3 +7,4 @@ setup_i3_gui_users:
   - username:
     gecos:
     super_key: 
+    wallpaper: 
