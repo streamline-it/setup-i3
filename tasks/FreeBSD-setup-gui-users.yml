@@ -1,6 +1,5 @@
 ---
 - name: check to see if the gecos name exists for each gui user
-  tags: displayenv
   register: setup_i3_gecos_check
   changed_when: false
   loop:
@@ -9,7 +8,6 @@
     cmd: "getent passwd {{ item['username'] }} | awk -F ':' '{ print $5 }'"
 
 - name: ensure gui users have gecos names entered
-  tags: displayenv
   notify: FreeBSD restart service
   loop:
     "{{ setup_i3_gui_users }}"

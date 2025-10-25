@@ -1,6 +1,5 @@
 ---
 - name: ensure needed variables are defined
-  tags: displayenv
   ansible.builtin.assert:
     that: 
       - setup_i3_gui_users is defined

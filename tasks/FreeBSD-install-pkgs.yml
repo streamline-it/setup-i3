@@ -1,6 +1,5 @@
 ---
 - name: ensure packages are installed
-  tags: displayenv
   loop:
     "{{ setup_i3_pkgs }}"
   community.general.pkgng:
