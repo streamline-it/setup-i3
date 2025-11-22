@@ -25,6 +25,8 @@
       bindsym $mod+t workspace 4; exec "mousepad"
       bindsym $mod+b workspace 3; exec "firefox"
       bindsym $mod+o workspace 5; exec "libreoffice"
+      bindsym $mod+p workspace 5; exec "lowriter"
+      bindsym $mod+q workspace 5; exec "localc"
       exec --no-startup-id xwallpaper --zoom {{ setup_i3_wallpaper_directory }}/{{ item['wallpaper'] }}
       # End of RO mods
     state: present
