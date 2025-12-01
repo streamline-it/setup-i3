@@ -21,8 +21,5 @@
   ansible.builtin.file:
     dest: "/home/{{ item['username'] }}/i3-key-bindings.txt-link"
     src: "{{ setup_i3_gui_doc_path }}/i3-key-bindings.txt"
-    owner: "{{ item['username'] }}"
-    group: "{{ item['username'] }}"
-    mode: "0660"
     force: true
     state: link
