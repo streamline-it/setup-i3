@@ -1,0 +1,28 @@
+---
+- name: ensure the doc directory exists
+  ansible.builtin.file:
+    path: "{{ setup_i3_gui_doc_path }}"
+    owner: root
+    group: wheel
+    mode: 0755
+    state: directory
+
+- name: ensure the i3 key bindings doc exists
+  ansible.builtin.copy:
+    src: i3-key-bindings.txt
+    dest: "{{ setup_i3_gui_doc_path }}/i3-key-bindings.txt"
+    owner: root
+    group: wheel
+    mode: "0644"
+
+- name: create symlink to the doc file to the user's home directory 
+  loop:
+    "{{ setup_i3_gui_users }}"
+  ansible.builtin.file:
+    dest: "/home/{{ item['username'] }}/i3-key-bindings.txt-link"
+    src: "{{ setup_i3_gui_doc_path }}/i3-key-bindings.txt"
+    owner: "{{ item['username'] }}"
+    group: "{{ item['username'] }}"
+    mode: "0660"
+    force: true
+    state: link

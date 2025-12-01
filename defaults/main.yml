@@ -8,3 +8,5 @@ setup_i3_gui_users:
     gecos:
     super_key: 
     wallpaper: 
+
+setup_i3_gui_doc_path: /usr/local/share/doc/ro_docs

@@ -26,3 +26,6 @@
 
 - name: import tasks to setup i3 config file
   ansible.builtin.include_tasks: FreeBSD-setup-user-i3-config.yml
+
+- name: import tasks to deploy my documentation
+  ansible.builtin.include_tasks: FreeBSD-setup-doc.yml
