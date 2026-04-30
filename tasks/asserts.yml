@@ -3,14 +3,26 @@
   ansible.builtin.assert:
     that: 
       - setup_i3_gui_users is defined
+      - setup_i3_gui_users is truthy
+      - setup_i3_gui_doc_path is defined
+      - setup_i3_gui_doc_path is truthy
       - setup_i3_pkgs is defined
+      - setup_i3_pkgs is truthy
       - setup_i3_svcs is defined
+      - setup_i3_svcs is truthy
       - setup_i3_sysrc_directives is defined
+      - setup_i3_sysrc_directives is truthy
       - setup_i3_pixbuf_update_path is defined
+      - setup_i3_pixbuf_update_path is truthy
       - setup_i3_mime_db_path is defined
+      - setup_i3_mime_db_path is truthy
       - setup_i3_mime_data_path is defined
+      - setup_i3_mime_data_path is truthy
+      - setup_i3_wallpaper_directory is defined
+      - setup_i3_wallpaper_directory is truthy
+      - setup_i3_wallpaper_files is defined
+      - setup_i3_wallpaper_files is truthy
+      - setup_i3_user_config_path is defined
+      - setup_i3_user_config_path is truthy
     fail_msg: >
-      "Make sure the following variables are defined ( setup_i3_gui_users,
-      setup_i3_pkgs, setup_i3_svcs, setup_i3_sysrc_directives 
-      setup_i3_pixbuf_update_path, setup_i3_mime_db_path 
-      setup_i3_mime_data_path"
+      "Ensure all key variables are defined and have values""

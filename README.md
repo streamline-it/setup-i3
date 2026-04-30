@@ -17,7 +17,11 @@ Role Variables
 setup_i3_gui_users:
   - username:
     gecos:
----
+
+# vars
+
+# FreeBSD
+
 setup_i3_pkgs:
   - lightdm
   - lightdm-gtk-greeter
@@ -44,6 +48,7 @@ setup_i3_mime_data_path: /usr/local/share/mime
 
 # location of user's i3 config file
 setup_i3_user_config_path: .config/i3/config
+
 
 Dependencies
 ------------
