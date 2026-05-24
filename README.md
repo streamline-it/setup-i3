@@ -7,7 +7,7 @@ Installs Xfce and lightdm as the display manager.
 
 Requirements
 ------------
-
+None
 
 Role Variables
 --------------
@@ -17,6 +17,10 @@ Role Variables
 setup_i3_gui_users:
   - username:
     gecos:
+
+# Path to the document listing shortcut definitions that is copied to user's
+# home directory
+setup_i3_gui_doc_path: 
 
 # vars
 
